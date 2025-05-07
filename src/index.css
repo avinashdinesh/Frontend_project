@@ -1,0 +1,225 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .app {
+    @apply min-h-screen bg-gray-50 transition-colors duration-200;
+  }
+
+  .app-container {
+    @apply p-4 md:p-8;
+  }
+
+  .header {
+    @apply max-w-6xl mx-auto mb-6 flex justify-between items-start;
+  }
+
+  .logo {
+    @apply flex items-center gap-2;
+  }
+
+  .icon {
+    @apply h-8 w-8 text-purple-600;
+  }
+
+  .title {
+    @apply text-2xl md:text-3xl font-bold text-gray-800;
+  }
+
+  /* Time Flap Styles */
+  .time-flap {
+    position: absolute;
+    top: -5px;
+    right: 300px;
+    width: 230px;
+    height: 140px;
+    background-color: #f8f9fa;
+    border-bottom-left-radius: 90px;
+    border-bottom-right-radius: 90px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 1px solid #e0e4e8;
+    border-top: none;
+    padding-bottom: 10px;
+    z-index: 10;
+    perspective: 1000px;
+  }
+
+  .time-display {
+    @apply text-4xl font-bold text-purple-800 text-center;
+    perspective: 400px;
+  }
+
+  .time-digit {
+    @apply inline-block relative transition-all duration-500;
+    transform-style: preserve-3d;
+    min-width: 1ch;
+    backface-visibility: hidden;
+  }
+
+  .time-digit.flipping {
+    transform: rotateX(-90deg);
+  }
+
+  .time-digit::after {
+    @apply absolute inset-0 bg-purple-800/5;
+    content: '';
+    transform: rotateX(180deg);
+    backface-visibility: hidden;
+  }
+
+  .time-separator {
+    @apply inline-block mx-1 text-purple-600;
+  }
+
+  .date-display {
+    @apply text-sm text-purple-600 mt-1 text-center;
+  }
+
+  /* Calendar Styles */
+  .calendar {
+    @apply bg-white rounded-lg shadow-lg overflow-hidden
+    transition-colors duration-200;
+  }
+
+  .calendar-header {
+    @apply flex items-center justify-between p-4 border-b border-gray-200;
+  }
+
+  .month {
+    @apply text-2xl font-semibold text-gray-800;
+  }
+
+  .controls {
+    @apply flex items-center space-x-2;
+  }
+
+  .nav-btn {
+    @apply p-2 rounded-full hover:bg-gray-100
+    transition-colors focus:outline-none focus:ring-2 focus:ring-purple-500;
+  }
+
+  .nav-icon {
+    @apply w-5 h-5 text-gray-600;
+  }
+
+  .today-btn {
+    @apply px-4 py-2 text-sm font-medium text-purple-700
+    bg-purple-50 rounded-md hover:bg-purple-100
+    transition-colors focus:outline-none focus:ring-2 focus:ring-purple-500;
+  }
+
+  /* Grid Styles */
+  .weekdays {
+    @apply grid grid-cols-7 border-b border-gray-200;
+  }
+
+  .weekday {
+    @apply py-2 text-sm font-medium text-center text-gray-500;
+  }
+
+  .days {
+    @apply grid grid-cols-7;
+  }
+
+  /* Day Cell Styles */
+  .day {
+    @apply h-28 md:h-32 border border-gray-200 p-1 overflow-hidden
+    bg-white transition-colors duration-200;
+  }
+
+  .day.inactive {
+    @apply bg-gray-50;
+  }
+
+  .day.today {
+    @apply ring-2 ring-inset ring-purple-500;
+  }
+
+  .day-header {
+    @apply flex items-center justify-between mb-1;
+  }
+
+  .day-number {
+    @apply text-sm font-medium text-gray-700;
+  }
+
+  .day-number.today-number {
+    @apply bg-purple-500 text-white rounded-full w-7 h-7 flex items-center justify-center;
+  }
+
+  .today-label {
+    @apply text-xs text-purple-500 font-semibold;
+  }
+
+  .events {
+    @apply overflow-auto max-h-[70%] custom-scrollbar;
+  }
+
+  .event-group {
+    @apply flex gap-1;
+  }
+
+  .event {
+    @apply mb-1 p-1 rounded text-xs leading-tight overflow-hidden
+    transition-colors duration-200;
+  }
+
+  .event-title {
+    @apply font-medium truncate;
+  }
+
+  .event-time {
+    @apply text-gray-600 text-xs;
+  }
+}
+
+/* Custom scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  @apply w-1 h-1;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 rounded-full;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-400;
+}
+
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: theme('colors.gray.300') transparent;
+}
+.calendar-header-container {
+  @apply flex flex-col sm:flex-row items-center justify-between mb-6;
+}
+
+.calendar-month-title {
+  @apply text-2xl sm:text-3xl font-bold text-gray-800 text-center mb-4 sm:mb-0;
+}
+
+.calendar-nav-controls {
+  @apply flex items-center justify-center gap-2;
+}
+
+.calendar-nav-button {
+  @apply p-2 rounded-full hover:bg-gray-100 transition-colors focus:outline-none focus:ring-2 focus:ring-purple-500;
+}
+
+.calendar-nav-icon {
+  @apply w-5 h-5 text-gray-600;
+}
+
+.calendar-today-button {
+  @apply px-4 py-2 text-sm font-medium text-purple-700 bg-purple-50 rounded-md hover:bg-purple-100 transition-colors focus:outline-none focus:ring-2 focus:ring-purple-500;
+}
