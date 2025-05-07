@@ -31,7 +31,7 @@
   .time-flap {
     position: absolute;
     top: -5px;
-    right: 300px;
+    right: 15vw; /* 10% of the viewport width */
     width: 230px;
     height: 140px;
     background-color: #f8f9fa;
